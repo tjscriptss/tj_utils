@@ -1,0 +1,365 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Cascadia Code', monospace;
+}
+
+body {
+    overflow: hidden;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.notifications-wrapper {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85vh;
+    width: 18.76vw;
+    padding: 1.7vh;
+}
+
+.notifications-wrapper.position-top-right {
+    top: 0;
+    right: 0;
+}
+
+.notifications-wrapper.position-top-left {
+    top: 0;
+    left: 0;
+}
+
+.notifications-wrapper.position-bottom-right {
+    bottom: 0;
+    right: 0;
+}
+
+.notifications-wrapper.position-bottom-left {
+    bottom: 0;
+    left: 0;
+}
+
+.notification {
+    padding: 1.28vh 1.7vh;
+    border-radius: 0.85vh;
+    background: rgba(17, 24, 39, 0.85);
+    box-shadow: 0 0.85vh 3.41vh rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: flex-start;
+    gap: 1.28vh;
+    animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: right;
+    position: relative;
+    overflow: hidden;
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+}
+
+.notification.info {
+    border-left: 0.32vh solid #60a5fa;
+}
+
+.notification.success {
+    border-left: 0.32vh solid #34d399;
+}
+
+.notification.error {
+    border-left: 0.32vh solid #f87171;
+}
+
+.notification.warning {
+    border-left: 0.32vh solid #fbbf24;
+}
+
+.notification i {
+    font-size: 1.7vh;
+    padding: 0.21vh;
+    animation: fadeInRotate 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.notification.info i { color: #60a5fa; }
+.notification.success i { color: #34d399; }
+.notification.error i { color: #f87171; }
+.notification.warning i { color: #fbbf24; }
+
+.notification-content {
+    flex-grow: 1;
+    padding-bottom: 1.49vh;
+    animation: fadeInUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.notification-title {
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 0.42vh;
+    font-size: 1.38vh;
+    letter-spacing: 0.03vh;
+}
+
+.notification-description {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.28vh;
+    line-height: 1.4;
+}
+
+.notification-progress {
+    position: absolute;
+    bottom: 0.42vh;
+    left: 1.7vh;
+    width: calc(100% - 2.7vw);
+    height: 0.21vh;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0.1vh;
+    overflow: hidden;
+}
+
+.notification-progress-fill {
+    height: 100%;
+    width: 100%;
+    transform-origin: left;
+}
+
+.notification.info .notification-progress-fill { 
+    background: #60a5fa;
+    animation: progress 5000ms linear forwards;
+}
+.notification.success .notification-progress-fill { 
+    background: #34d399;
+    animation: progress 5000ms linear forwards;
+}
+.notification.error .notification-progress-fill { 
+    background: #f87171;
+    animation: progress 5000ms linear forwards;
+}
+.notification.warning .notification-progress-fill { 
+    background: #fbbf24;
+    animation: progress 5000ms linear forwards;
+}
+
+/* Progress Bar */
+.progress-container {
+    position: fixed;
+    width: 20.76vw;
+}
+
+.progress-container.position-middle {
+    bottom: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.progress-container.position-top {
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.progress-container.position-bottom {
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.progress-content {
+    background: rgba(17, 24, 39, 0.85);
+    padding: 1.7vh;
+    border-radius: 0.85vh;
+    box-shadow: 0 0.85vh 3.41vh rgba(0, 0, 0, 0.2);
+    animation: fadeInScale 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+}
+
+.progress-icon {
+    color: #60a5fa;
+    font-size: 2.2vh;
+    margin-bottom: 1.28vh;
+    display: block;
+    text-align: center;
+    animation: spin 1s linear infinite;
+}
+
+.progress-label {
+    color: #ffffff;
+    margin-bottom: 1.28vh;
+    font-size: 1.38vh;
+    text-align: center;
+    letter-spacing: 0.03vh;
+    font-weight: 500;
+}
+
+.progress-bar {
+    height: 0.42vh;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0.21vh;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #60a5fa;
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+/* TextUI */
+.textui-container {
+    position: fixed;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    transform: translateY(0.85vh);
+}
+
+.textui-container:not(.hidden) {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.textui-container.position-middle {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.textui-container.position-middle-right {
+    top: 50%;
+    right: 2.56vh;
+    transform: translateY(-50%);
+}
+
+.textui-container.position-middle-left {
+    top: 50%;
+    left: 2.56vh;
+    transform: translateY(-50%);
+}
+
+.textui-container.position-top-right {
+    top: 2.56vh;
+    right: 2.56vh;
+}
+
+.textui-container.position-top-left {
+    top: 2.56vh;
+    left: 2.56vh;
+}
+
+.textui-container.position-top {
+    top: 2.56vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.textui-container.position-bottom-right {
+    bottom: 2.56vh;
+    right: 2.56vh;
+}
+
+.textui-container.position-bottom-left {
+    bottom: 2.56vh;
+    left: 2.56vh;
+}
+
+.textui-container.position-bottom {
+    bottom: 2.56vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.textui-content {
+    background: rgba(17, 24, 39, 0.8);
+    padding: 1.28vh 1.7vh;
+    border-radius: 0.85vh;
+    display: flex;
+    align-items: center;
+    gap: 1.28vh;
+    min-width: 12.5vw;
+    box-shadow: 0 0.85vh 3.41vh rgba(0, 0, 0, 0.2);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+}
+
+.textui-icon {
+    color: #60a5fa;
+    font-size: 1.7vh;
+}
+
+.textui-title {
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 0.21vh;
+    font-size: 1.39vh;
+    letter-spacing: 0.03vh;
+}
+
+.textui-description {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.18vh;
+    line-height: 1.4;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(1.6) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes slideOut {
+    to {
+        opacity: 0;
+        transform: translateX(1.6) scale(0.98);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(0.53vh);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRotate {
+    from {
+        opacity: 0;
+        transform: rotate(-30deg) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(0) scale(1);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes progress {
+    from {
+        transform: scaleX(1);
+    }
+    to {
+        transform: scaleX(0);
+    }
+}
