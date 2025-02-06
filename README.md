@@ -116,3 +116,7 @@ TriggerClientEvent('tj_utils:hideTextUI', source)
 - HideProgress
 - ShowTextUI
 - HideTextUI
+
+If you want to support us you can do it through our paypal.
+
+https://paypal.me/troweyt
