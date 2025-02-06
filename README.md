@@ -53,7 +53,6 @@ exports.tj_utils:ShowProgress({
 exports.tj_utils:HideProgress()
 
 -- Server side
-
 TriggerClientEvent('tj_utils:progress', source, {
     label = 'Loading...',
     duration = 2000, -- ms
@@ -88,7 +87,6 @@ TriggerClientEvent('tj_utils:showTextUI', source, {
 })
 
 TriggerClientEvent('tj_utils:hideTextUI', source)
-
 ```
 
 ## Positions
