@@ -1,6 +1,7 @@
 # TJ Utils
 
 A modern UI utility resource for FiveM providing notifications, progress bars, and TextUI functionality.
+Preview: https://youtu.be/VabyZLvBsV4
 
 ## Features
 - Modern, clean design with smooth animations
