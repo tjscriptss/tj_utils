@@ -78,7 +78,7 @@ exports.tj_utils:ShowTextUI({
 -- Hide TextUI
 exports.tj_utils:HideTextUI()
 
---Server side
+-- Server side
 TriggerClientEvent('tj_utils:showTextUI', source, {
     icon = 'fa-keyboard',
     title = 'Interaction',
